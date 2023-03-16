@@ -4,22 +4,13 @@ let operator = null;
 let prev = null;
 let starting = true;
 
-const numButtons = document.querySelectorAll('.num-button');
-numButtons.forEach((button) => {
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
     button.addEventListener('click', (evt) => {
-        const label = evt.target.textContent; // gets the number of the button
+        const label = evt.target.textContent; // gets the value of the button
         populateDisplay(label);
-    });
-});
-
-const opButtons = document.querySelectorAll('.op-button');
-opButtons.forEach((button) => {
-    button.addEventListener('click', (evt) => {
-        const label = evt.target.textContent;
-        populateDisplay(label);
-    });
-});
-
+    })
+})
 
 function add(a, b) {
     return Number(a) + Number(b);
@@ -35,7 +26,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0){
-        return "Oops";
+        return NaN;
     }
     return a / b;
 }
@@ -55,41 +46,6 @@ function operate(op, a, b){
     }
 }
 
-// function populateDisplayNum(num) {
-//     if (displayValue === 0) {// instead of concat, replace
-//         displayValue = num;
-//     } else {
-//         displayValue = displayValue + num;
-//     }
-//     display.textContent = displayValue;
-// }
-
-// function populateDisplayOp(op) {
-//     if (operator) {
-//         runOperation(operator);
-//     }
-//     operator = label;
-//     display.textConent = displayValue;
-// }
-
-// function populateDisplay(label) {
-//     if (typeof label === 'number') { // this doesn't work!!!
-//         if (displayValue === 0) { // instead of concat, replace
-//             displayValue = label;
-//         } else {
-//             displayValue = displayValue + label; // want this to be string concat
-//         }
-//     } else {
-//         if (operator) {
-//             runOperation(operator);
-//             operator = label;
-//         } else { // initial press of operation
-//             operator = label;
-//         }
-//     }
-//     display.textContent = displayValue;
-// }
-
 function populateDisplay(label) {
     if(label === "Clear"){ // resets if select clear
         displayValue = '0';
@@ -98,7 +54,7 @@ function populateDisplay(label) {
         display.textContent = displayValue;
         return;
     }
-    if(isNaN(displayValue)){
+    if(isNaN(displayValue)){ // if displaying error message, won't let you do anything except clear
         return;
     }
     if(prev != null){
@@ -145,7 +101,7 @@ function populateDisplay(label) {
                 displayValue = label;
                 starting = false;
             } else {
-                displayValue += label; // !!! this will mess up if you start with an operator
+                displayValue += label; 
                 starting = false;
             }
         }
@@ -155,6 +111,8 @@ function populateDisplay(label) {
 }
 
 /*
+Example process for thinking through cases and testing
+
 start
 display 0
 op null
