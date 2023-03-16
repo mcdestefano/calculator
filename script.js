@@ -1,6 +1,7 @@
 let display = document.querySelector('.display');
-let displayValue = display.textContent;
+let displayValue = +display.textContent;
 let operator;
+let prev = 0;
 
 const numButtons = document.querySelectorAll('.num-button');
 numButtons.forEach((button) => {
@@ -13,7 +14,8 @@ numButtons.forEach((button) => {
 const opButtons = document.querySelectorAll('.op-button');
 opButtons.forEach((button) => {
     button.addEventListener('click', (evt) => {
-        operator = evt.target.textContent;
+        const label = evt.target.textContent;
+        populateDisplay(label);
     });
 });
 
@@ -53,41 +55,25 @@ function operate(op, a, b){
 }
 
 function populateDisplay(label) {
-    if(typeof label === 'number'){
+    if(typeof label === 'number'){ // this doesn't work!!!
         if(displayValue === 0){ // instead of concat, replace
             displayValue = label;
         } else {
         displayValue = displayValue + label; // want this to be string concat
         }
-        display.textContent = displayValue;
     } else {
-        // to be filled
+        if(operator){
+            runOperation(operator);
+            operator = label;
+        } else { // initial press of operation
+            operator = label;
+        }
     }
-
-
-
-
-
-// if an operator has been called, uses the operator on the num and displayValue to get new value
-/*  to be removed
-if(operator){
-    runOperation(operator, label);
-    display.textContent = displayValue;
-}
-*/
-
-    
+    display.textContent = displayValue;    
 }
 
-function runOperation(op, num){ //updates values of displayValue and operator by running operation
-    if(operator){
-
-    } else {
-        operator = op;
-    }
-    /*
-    const newValue = operate(op, displayValue, num);
+function runOperation(op){ //updates values of displayValue and operator by running operation
+    const newValue = operate(op, prev, displayValue);
+    prev = displayValue;
     displayValue = newValue;
-    operator = null;
-    */
 }
