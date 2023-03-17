@@ -82,7 +82,7 @@ function populateDisplay(label) {
                     operator = null;
                 }
             } else {
-                if(label === "="){
+                if(isNaN(label)){
                     displayValue = "Error. Clear and try again.";
                     display.textContent = displayValue;
                     return;

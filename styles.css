@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+    background-color: black;;
+}
+
+.display {
+    border-radius: 3px;
+    background-color: rgb(172, 166, 166);
+}
+
+.buttons {
+    display: flex;
+}
+
+.num-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+}
+
+.num-buttons button {
+    background-color: white;
+}
+
+.op-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.op-buttons button {
+    background-color: rgb(233, 179, 80);
+}
+
+.op-buttons .evaluate {
+    background-color: rgb(61, 104, 75);
+}
+
+.op-buttons .clear {
+    background-color: rgb(195, 195, 250);
+}
